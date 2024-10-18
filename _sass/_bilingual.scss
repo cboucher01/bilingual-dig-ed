@@ -1,6 +1,14 @@
 /* Bilingual layouts for Ed: the minimal edition theme.
- * This module overrides the styles in _ed.scss.
+ * This SASS module overrides the styles in _ed.scss.
 */
+
+/*
+  Colors
+*/
+
+$theme-color-1: #c29f51;
+$theme-color-2: #909e53;
+$theme-color-3: #6a956f;
 
 /*
   Sidebar
@@ -18,11 +26,12 @@
     left: -14rem;
     width: 14rem;
     visibility: hidden;
+    overflow-x: visible;
     overflow-y: auto;
     font-family: "PT Sans", Helvetica, Arial, sans-serif;
     font-size: .875rem;/* 15px*/
-    color: rgba(255,255,255,.6);
-    background-color: #202020;
+    color: #000000;
+    background-color: $theme-color-1;
     -webkit-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
   }
@@ -33,14 +42,10 @@
     }
   }
   
-  /* Sidebar content */
-  .sidebar {
-    background-color: $link-color;
-  }
-  
   .sidebar a {
     font-weight: normal;
-    color: #fff;
+    color: #000000;
+    text-decoration: underline;
   }
   
   .sidebar-item {
@@ -94,14 +99,15 @@
   .sidebar-toggle {
     position: absolute;
     top:  .8rem;
-    left: 1rem;
+    left: -1px;
     display: block;
-    padding: .5rem .75rem;
-    color: #505050;
-    background-color: #fff;
-    border-radius: .25rem;
+    padding: .5rem .5rem;
+    color: #000000;
+    background-color: $theme-color-1;
+    border-radius: 0 .25rem .25rem 0;
     border: none;
     cursor: pointer;
+    z-index: 9;
   }
   
   .sidebar-toggle:before {
@@ -109,30 +115,30 @@
     width: 1rem;
     height: .75rem;
     content: "";
-    background-image: -webkit-linear-gradient(to bottom, #555, #555 20%, #fff 20%, #fff 40%, #555 40%, #555 60%, #fff 60%, #fff 80%, #555 80%, #555 100%);
-    background-image:    -moz-linear-gradient(to bottom, #555, #555 20%, #fff 20%, #fff 40%, #555 40%, #555 60%, #fff 60%, #fff 80%, #555 80%, #555 100%);
-    background-image:     -ms-linear-gradient(to bottom, #555, #555 20%, #fff 20%, #fff 40%, #555 40%, #555 60%, #fff 60%, #fff 80%, #555 80%, #555 100%);
-    background-image:         linear-gradient(to bottom, #555, #555 20%, #fff 20%, #fff 40%, #555 40%, #555 60%, #fff 60%, #fff 80%, #555 80%, #555 100%);
+    background-image: -webkit-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
+    background-image:    -moz-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
+    background-image:     -ms-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
+    background-image:         linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
   }
   
   .sidebar-toggle:focus {
-    border: solid #555 1px;
+    border: solid #000 1px;
   }
   
   .sidebar-toggle:active,
-  #sidebar-checkbox:focus ~ .sidebar-toggle,
-  #sidebar-checkbox:checked ~ .sidebar-toggle {
-    color: #fff;
-    background-color: #555;
+  #sidebar-checkbox:focus + .sidebar + .sidebar-toggle,
+  #sidebar-checkbox:checked + .sidebar + .sidebar-toggle {
+    color: #000;
+    background-color: $theme-color-1;
   }
   
   .sidebar-toggle:active:before,
-  #sidebar-checkbox:focus ~ .sidebar-toggle:before,
-  #sidebar-checkbox:checked ~ .sidebar-toggle:before {
-    background-image: -webkit-linear-gradient(to bottom, #fff, #fff 20%, #555 20%, #555 40%, #fff 40%, #fff 60%, #555 60%, #555 80%, #fff 80%, #fff 100%);
-    background-image:    -moz-linear-gradient(to bottom, #fff, #fff 20%, #555 20%, #555 40%, #fff 40%, #fff 60%, #555 60%, #555 80%, #fff 80%, #fff 100%);
-    background-image:     -ms-linear-gradient(to bottom, #fff, #fff 20%, #555 20%, #555 40%, #fff 40%, #fff 60%, #555 60%, #555 80%, #fff 80%, #fff 100%);
-    background-image:         linear-gradient(to bottom, #fff, #fff 20%, #555 20%, #555 40%, #fff 40%, #fff 60%, #555 60%, #555 80%, #fff 80%, #fff 100%);
+  #sidebar-checkbox:focus + .sidebar + .sidebar-toggle:before,
+  #sidebar-checkbox:checked + .sidebar + .sidebar-toggle:before {
+    background-image: -webkit-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
+    background-image:    -moz-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
+    background-image:     -ms-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
+    background-image:         linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
   }
   
   @media (min-width: 30.1em) {
@@ -182,7 +188,7 @@
   
   #sidebar-checkbox:checked ~ .sidebar,
   #sidebar-checkbox:checked ~ .wrap,
-  #sidebar-checkbox:checked ~ .sidebar-toggle {
+  #sidebar-checkbox:checked + .sidebar + .sidebar-toggle {
     -webkit-transform: translateX(14rem);
         -ms-transform: translateX(14rem);
             transform: translateX(14rem);
@@ -207,7 +213,7 @@
   
   .layout-reverse #sidebar-checkbox:checked ~ .sidebar,
   .layout-reverse #sidebar-checkbox:checked ~ .wrap,
-  .layout-reverse #sidebar-checkbox:checked ~ .sidebar-toggle {
+  .layout-reverse #sidebar-checkbox:checked + .sidebar + .sidebar-toggle {
     -webkit-transform: translateX(-14rem);
         -ms-transform: translateX(-14rem);
             transform: translateX(-14rem);
@@ -225,10 +231,11 @@
         -ms-transform: translateX(0);
             transform: translateX(0);
   }
-  
-  .sidebar-overlay #sidebar-checkbox:checked ~ .sidebar-toggle {
+  /*
+  .sidebar-overlay #sidebar-checkbox:checked + .sidebar + .sidebar-toggle {
     box-shadow: 0 0 0 .25rem #fff;
   }
+    */
   
   .sidebar-overlay #sidebar-checkbox:checked ~ .sidebar {
     box-shadow: .25rem 0 .5rem rgba(0,0,0,.1);

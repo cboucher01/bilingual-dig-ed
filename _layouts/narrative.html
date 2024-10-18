@@ -2,8 +2,30 @@
 layout: default
 ---
 
-<article class="narrative">
-  <h1 class="text-title">{{ page.title }}</h1>
-  <p class="byline">by {{ page.author }}</p>
-  {{ content }}
+{% assign language-1 = page.languages | first %}
+{% assign language-2 = page.languages | last %}
+
+{% assign thisChapter = site.texts | where: "chapter", page.chapter %}
+{% assign thisChapter-1 = thisChapter | where: "language", language-1 %}
+{% assign thisChapter-2 = thisChapter | where: "language", language-2 %}
+
+
+{% for i in thisChapter-1 %}
+  {% assign title-1 = i.title %}
+  {% assign text-1 = i.content %}
+{% endfor %}
+
+{% for i in thisChapter-2 %}
+  {% assign title-2 = i.title %}
+  {% assign text-2 = i.content %}
+{% endfor %}
+
+<article class="narrative {{ language-1 }}" lang="{{ language-1 }}">
+  <h2 class="text-title">{{ title-1 }}</h2>
+  {{ text-1 }}
+</article>
+
+<article class="narrative {{ language-2 }}" lang="{{ language-2 }}">
+  <h2 class="text-title">{{ title-2 }}</h2>
+  {{ text-2 }}
 </article>
