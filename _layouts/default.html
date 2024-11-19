@@ -7,11 +7,24 @@
 
     {% include sidebar.html %}
 
-    <button class="sidebar-toggle"
+    <button class="sidebar-toggle nav-menu-toggle"
       aria-label="Open navigation menu"
       aria-expanded="false"
       aria-controls="sidebar">
     </button>
+
+    {% if page.layout == "narrative" or page.layout == "poem" or page.layout == "drama" %}
+    <button class="sidebar-toggle chapter-menu-toggle"
+      aria-label="Open chapter menu"
+      aria-expanded="false"
+      aria-controls="sidebar">
+    </button>
+    <button class="sidebar-toggle settings-menu-toggle"
+      aria-label="Open settings menu"
+      aria-expanded="false"
+      aria-controls="sidebar">
+    </button>
+    {% endif %}
 
     <!--
       Wrap is the content to shift when toggling the sidebar. We wrap the content to avoid any CSS
@@ -49,27 +62,97 @@
 
       // Support sidebar toggle
       (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
+        var navToggle = document.querySelector('.nav-menu-toggle');
+        var chapterToggle = document.querySelector('.chapter-menu-toggle');
+        var settingsToggle = document.querySelector('.settings-menu-toggle');
         var sidebar = document.querySelector('#sidebar');
         var sidebarNavLink = document.querySelector('.sidebar-nav-item');
         var checkbox = document.querySelector('#sidebar-checkbox');
+        var main = document.querySelector('#main');
 
         // Toggle sidebar
-        toggle.addEventListener('click', function(e) {
+        navToggle.addEventListener('click', function(e) {
           e.preventDefault();
 
-          checkbox.checked = !checkbox.checked;
-          toggle.setAttribute('aria-expanded', checkbox.checked);
-          sidebar.setAttribute('aria-hidden', !checkbox.checked);
+          switch (checkbox.checked) {
+            case true:
+              if (sidebar.classList.contains("nav-menu")){
+                checkbox.checked = !checkbox.checked;
+                navToggle.setAttribute('aria-expanded', checkbox.checked);
+                sidebar.setAttribute('aria-hidden', !checkbox.checked);
+                break;
+              } else {
+                break;
+              }
+            case false:
+              checkbox.checked = !checkbox.checked;
+              navToggle.setAttribute('aria-expanded', checkbox.checked);
+              sidebar.setAttribute('aria-hidden', !checkbox.checked);
+              break;
+          }
+
+          sidebar.classList.remove("chapter-menu");
+          sidebar.classList.remove("settings-menu");
+          sidebar.classList.add("nav-menu");
+        });
+
+        chapterToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          switch (checkbox.checked) {
+            case true:
+              if (sidebar.classList.contains("chapter-menu")){
+                checkbox.checked = !checkbox.checked;
+                navToggle.setAttribute('aria-expanded', checkbox.checked);
+                sidebar.setAttribute('aria-hidden', !checkbox.checked);
+                break;
+              } else {
+                break;
+              }
+            case false:
+              checkbox.checked = !checkbox.checked;
+              navToggle.setAttribute('aria-expanded', checkbox.checked);
+              sidebar.setAttribute('aria-hidden', !checkbox.checked);
+              break;
+          }
+
+          sidebar.classList.remove("nav-menu");
+          sidebar.classList.remove("settings-menu");
+          sidebar.classList.add("chapter-menu");
+        });
+
+        settingsToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          switch (checkbox.checked) {
+            case true:
+              if (sidebar.classList.contains("settings-menu")){
+                checkbox.checked = !checkbox.checked;
+                navToggle.setAttribute('aria-expanded', checkbox.checked);
+                sidebar.setAttribute('aria-hidden', !checkbox.checked);
+                break;
+              } else {
+                break;
+              }
+            case false:
+              checkbox.checked = !checkbox.checked;
+              navToggle.setAttribute('aria-expanded', checkbox.checked);
+              sidebar.setAttribute('aria-hidden', !checkbox.checked);
+              break;
+          }
+          
+          sidebar.classList.remove("nav-menu");
+          sidebar.classList.remove("chapter-menu");
+          sidebar.classList.add("settings-menu");
         });
 
         // Make sure we focus on the menu once it opens to aid tab navigation
         sidebar.addEventListener('transitionend', function() {sidebarNavLink.focus()});
 
-        // Clicking anywhere in the sidebar should close the menu
-        sidebar.addEventListener('click', function(e) {
+        // Clicking anywhere outside the sidebar should close the menu
+        main.addEventListener('click', function(e) {
           checkbox.checked = false;
-          toggle.setAttribute('aria-expanded', false);
+          navToggle.setAttribute('aria-expanded', false);
           sidebar.setAttribute('aria-hidden', true);
         })
 
