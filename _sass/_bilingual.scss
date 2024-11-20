@@ -25,27 +25,64 @@ $theme-color-3: #6a956f;
     bottom: 0;
     left: -14rem;
     width: 14rem;
-    visibility: hidden;
+    visibility: visible;
     overflow-x: visible;
     overflow-y: auto;
     font-family: "PT Sans", Helvetica, Arial, sans-serif;
     font-size: .875rem;/* 15px*/
     color: #000000;
     background-color: $theme-color-1;
-    -webkit-transition: all .3s ease-in-out;
-            transition: all .3s ease-in-out;
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+            transition: transform .3s ease-in-out;
+  }
+
+  .sidebar.hidden {
+    visibility: hidden;
   }
 
   .sidebar.nav-menu {
     background-color: $theme-color-1;
+
+    .sidebar-nav {
+      display: block;
+    }
+
+    .sidebar-chapters, .sidebar-settings {
+      display: none;
+    }
   }
 
   .sidebar.chapter-menu {
     background-color: $theme-color-2;
+
+    .sidebar-chapters {
+      display: block;
+
+      h2 {
+        padding: .5rem 1rem;
+      }
+
+      ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+      }
+    }
+
+    .sidebar-nav, .sidebar-settings {
+      display: none;
+    }
   }
 
   .sidebar.settings-menu {
     background-color: $theme-color-3;
+
+    .sidebar-settings {
+      display: block;
+    }
+
+    .sidebar-nav, .sidebar-chapters {
+      display: none;
+    }
   }
   
   @media (min-width: 30em) {
@@ -69,7 +106,7 @@ $theme-color-3: #6a956f;
   }
   
   /* Sidebar nav */
-  .sidebar-nav {
+  .sidebar-nav, .sidebar-chapters, .sidebar-settings {
     border-bottom: 1px solid rgba(255,255,255,.1);
   }
   
@@ -125,11 +162,13 @@ $theme-color-3: #6a956f;
   .sidebar-toggle.chapter-menu-toggle {
     top:  3.2rem;
     left: -1px;
+    background-color: $theme-color-2;
   }
 
   .sidebar-toggle.settings-menu-toggle {
     top:  5.6rem;
     left: -1px;
+    background-color: $theme-color-3;
   }
   
   .sidebar-toggle:before {
@@ -142,27 +181,33 @@ $theme-color-3: #6a956f;
     background-image:     -ms-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
     background-image:         linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
   }
+
+  .sidebar-toggle.chapter-menu-toggle:before {
+    display: inline-block;
+    width: 1rem;
+    height: .75rem;
+    content: "";
+    background-image: -webkit-linear-gradient(to bottom, #000, #000 20%, $theme-color-2 20%, $theme-color-2 40%, #000 40%, #000 60%, $theme-color-2 60%, $theme-color-2 80%, #000 80%, #000 100%);
+    background-image:    -moz-linear-gradient(to bottom, #000, #000 20%, $theme-color-2 20%, $theme-color-2 40%, #000 40%, #000 60%, $theme-color-2 60%, $theme-color-2 80%, #000 80%, #000 100%);
+    background-image:     -ms-linear-gradient(to bottom, #000, #000 20%, $theme-color-2 20%, $theme-color-2 40%, #000 40%, #000 60%, $theme-color-2 60%, $theme-color-2 80%, #000 80%, #000 100%);
+    background-image:         linear-gradient(to bottom, #000, #000 20%, $theme-color-2 20%, $theme-color-2 40%, #000 40%, #000 60%, $theme-color-2 60%, $theme-color-2 80%, #000 80%, #000 100%);
+  }
+
+  .sidebar-toggle.settings-menu-toggle:before {
+    display: inline-block;
+    width: 1rem;
+    height: .75rem;
+    content: "";
+    background-image: -webkit-linear-gradient(to bottom, #000, #000 20%, $theme-color-3 20%, $theme-color-3 40%, #000 40%, #000 60%, $theme-color-3 60%, $theme-color-3 80%, #000 80%, #000 100%);
+    background-image:    -moz-linear-gradient(to bottom, #000, #000 20%, $theme-color-3 20%, $theme-color-3 40%, #000 40%, #000 60%, $theme-color-3 60%, $theme-color-3 80%, #000 80%, #000 100%);
+    background-image:     -ms-linear-gradient(to bottom, #000, #000 20%, $theme-color-3 20%, $theme-color-3 40%, #000 40%, #000 60%, $theme-color-3 60%, $theme-color-3 80%, #000 80%, #000 100%);
+    background-image:         linear-gradient(to bottom, #000, #000 20%, $theme-color-3 20%, $theme-color-3 40%, #000 40%, #000 60%, $theme-color-3 60%, $theme-color-3 80%, #000 80%, #000 100%);
+  }
   
   .sidebar-toggle:focus {
     border: solid #000 1px;
   }
-  
-  .sidebar-toggle:active,
-  #sidebar-checkbox:focus + .sidebar + .sidebar-toggle,
-  #sidebar-checkbox:checked + .sidebar + .sidebar-toggle {
-    color: #000;
-    background-color: $theme-color-1;
-  }
-  
-  .sidebar-toggle:active:before,
-  #sidebar-checkbox:focus + .sidebar + .sidebar-toggle:before,
-  #sidebar-checkbox:checked + .sidebar + .sidebar-toggle:before {
-    background-image: -webkit-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
-    background-image:    -moz-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
-    background-image:     -ms-linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
-    background-image:         linear-gradient(to bottom, #000, #000 20%, $theme-color-1 20%, $theme-color-1 40%, #000 40%, #000 60%, $theme-color-1 60%, $theme-color-1 80%, #000 80%, #000 100%);
-  }
-  
+
   @media (min-width: 30.1em) {
     .sidebar-toggle {
       position: fixed;
@@ -205,7 +250,7 @@ $theme-color-3: #6a956f;
   
   #sidebar-checkbox:checked + .sidebar {
     z-index: 10;
-    visibility: visible;
+    /* visibility: visible; */
   }
   
   #sidebar-checkbox:checked ~ .sidebar,

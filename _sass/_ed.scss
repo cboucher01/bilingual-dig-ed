@@ -387,6 +387,9 @@ a.sidebar-nav-item:focus {
   border: solid #555 1px;
 }
 
+/* This section is commented out to reduce the complexity of 
+   overriding it for the new sidebar menus in _bilingual.scss.
+
 .sidebar-toggle:active,
 #sidebar-checkbox:focus ~ .sidebar-toggle,
 #sidebar-checkbox:checked ~ .sidebar-toggle {
@@ -402,6 +405,8 @@ a.sidebar-nav-item:focus {
   background-image:     -ms-linear-gradient(to bottom, #fff, #fff 20%, #555 20%, #555 40%, #fff 40%, #fff 60%, #555 60%, #555 80%, #fff 80%, #fff 100%);
   background-image:         linear-gradient(to bottom, #fff, #fff 20%, #555 20%, #555 40%, #fff 40%, #fff 60%, #555 60%, #555 80%, #fff 80%, #fff 100%);
 }
+
+*/
 
 @media (min-width: 30.1em) {
   .sidebar-toggle {

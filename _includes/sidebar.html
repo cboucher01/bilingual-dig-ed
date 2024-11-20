@@ -5,12 +5,12 @@
 <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
 
 <!-- Toggleable sidebar -->
-<aside class="sidebar nav-menu" id="sidebar" aria-hidden="true">
+<aside class="sidebar nav-menu hidden" id="sidebar" aria-hidden="true">
   <div class="sidebar-item">
     <p>{{ site.description }}</p>
   </div>
 
-  <nav class="sidebar-nav">
+  <nav class="sidebar-nav" id="sidebar-nav">
     <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
 
     {% comment %}
@@ -39,6 +39,27 @@
 
     <a class="sidebar-nav-item" href="https://github.com/minicomp/ed" target="_blank">GitHub project</a>
   </nav>
+
+  <nav class="sidebar-chapters" id="sidebar-chapters">
+    <div class="toc">
+      <h2>Chapters</h2>
+      <ul class="texts">
+      {% for item in site.chapters %}
+    
+        <li class="text-title">
+          <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ site.baseurl }}{{ item.url }}">
+            {{ item.chapter }}
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="sidebar-settings" id="sidebar-settings">
+    <button>Language Select</button>
+    <button>Annotations</button>
+  </div>
 
   <div class="sidebar-item">
     <p>

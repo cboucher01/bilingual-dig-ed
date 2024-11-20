@@ -19,6 +19,7 @@
       aria-expanded="false"
       aria-controls="sidebar">
     </button>
+
     <button class="sidebar-toggle settings-menu-toggle"
       aria-label="Open settings menu"
       aria-expanded="false"
@@ -26,7 +27,7 @@
     </button>
     {% endif %}
 
-    <!--
+    <!--  
       Wrap is the content to shift when toggling the sidebar. We wrap the content to avoid any CSS
       collisions with our real content.
     -->
@@ -148,6 +149,9 @@
 
         // Make sure we focus on the menu once it opens to aid tab navigation
         sidebar.addEventListener('transitionend', function() {sidebarNavLink.focus()});
+
+        // Toggle "hidden" class on the sidebar to aid tab navigation
+        sidebar.addEventListener('transitionend', function() {sidebar.classList.toggle("hidden")});
 
         // Clicking anywhere outside the sidebar should close the menu
         main.addEventListener('click', function(e) {
