@@ -68,6 +68,8 @@
         var settingsToggle = document.querySelector('.settings-menu-toggle');
         var sidebar = document.querySelector('#sidebar');
         var sidebarNavLink = document.querySelector('.sidebar-nav-item');
+        var sidebarChapterLink = document.querySelector('.sidebar-chapter-item');
+        var sidebarButton = document.querySelector('.sidebar-button');
         var checkbox = document.querySelector('#sidebar-checkbox');
         var main = document.querySelector('#main');
 
@@ -95,6 +97,9 @@
           sidebar.classList.remove("chapter-menu");
           sidebar.classList.remove("settings-menu");
           sidebar.classList.add("nav-menu");
+
+          // Make sure we focus on the menu once it opens to aid tab navigation
+          sidebarNavLink.focus();
         });
 
         chapterToggle.addEventListener('click', function(e) {
@@ -120,6 +125,8 @@
           sidebar.classList.remove("nav-menu");
           sidebar.classList.remove("settings-menu");
           sidebar.classList.add("chapter-menu");
+
+          sidebarChapterLink.focus();
         });
 
         settingsToggle.addEventListener('click', function(e) {
@@ -145,10 +152,9 @@
           sidebar.classList.remove("nav-menu");
           sidebar.classList.remove("chapter-menu");
           sidebar.classList.add("settings-menu");
-        });
 
-        // Make sure we focus on the menu once it opens to aid tab navigation
-        sidebar.addEventListener('transitionend', function() {sidebarNavLink.focus()});
+          sidebarButton.focus();
+        });
 
         // Toggle "hidden" class on the sidebar to aid tab navigation
         sidebar.addEventListener('transitionend', function() {sidebar.classList.toggle("hidden")});

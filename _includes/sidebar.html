@@ -47,7 +47,7 @@
       {% for item in site.chapters %}
     
         <li class="text-title">
-          <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ site.baseurl }}{{ item.url }}">
+          <a class="sidebar-nav-item sidebar-chapter-item{% if page.url == node.url %} active{% endif %}" href="{{ site.baseurl }}{{ item.url }}">
             {{ item.chapter }}
           </a>
         </li>
@@ -57,8 +57,8 @@
   </nav>
 
   <div class="sidebar-settings" id="sidebar-settings">
-    <button>Language Select</button>
-    <button>Annotations</button>
+    <button class="sidebar-button">Language Select</button>
+    <button class="sidebar-button">Annotations</button>
   </div>
 
   <div class="sidebar-item">
