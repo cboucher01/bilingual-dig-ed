@@ -11,6 +11,7 @@
       aria-label="Open navigation menu"
       aria-expanded="false"
       aria-controls="sidebar">
+      <img src="{{ '/assets/house-solid.svg' | relative_url }}">
     </button>
 
     {% if page.layout == "narrative" or page.layout == "poem" or page.layout == "drama" %}
@@ -18,12 +19,14 @@
       aria-label="Open chapter menu"
       aria-expanded="false"
       aria-controls="sidebar">
+      <img src="{{ '/assets/book-solid.svg' | relative_url }}">
     </button>
 
     <button class="sidebar-toggle settings-menu-toggle"
       aria-label="Open settings menu"
       aria-expanded="false"
       aria-controls="sidebar">
+      <img src="{{ '/assets/gear-solid.svg' | relative_url }}">
     </button>
     {% endif %}
 
@@ -98,6 +101,10 @@
           sidebar.classList.remove("settings-menu");
           sidebar.classList.add("nav-menu");
 
+          chapterToggle.classList.remove("active");
+          settingsToggle.classList.remove("active");
+          navToggle.classList.toggle("active");
+
           // Make sure we focus on the menu once it opens to aid tab navigation
           sidebarNavLink.focus();
         });
@@ -126,6 +133,10 @@
           sidebar.classList.remove("settings-menu");
           sidebar.classList.add("chapter-menu");
 
+          navToggle.classList.remove("active");
+          settingsToggle.classList.remove("active");
+          chapterToggle.classList.toggle("active");
+
           sidebarChapterLink.focus();
         });
 
@@ -153,6 +164,10 @@
           sidebar.classList.remove("chapter-menu");
           sidebar.classList.add("settings-menu");
 
+          navToggle.classList.remove("active");
+          chapterToggle.classList.remove("active");
+          settingsToggle.classList.toggle("active");
+
           sidebarButton.focus();
         });
 
@@ -163,7 +178,13 @@
         main.addEventListener('click', function(e) {
           checkbox.checked = false;
           navToggle.setAttribute('aria-expanded', false);
+          chapterToggle.setAttribute('aria-expanded', false);
+          settingsToggle.setAttribute('aria-expanded', false);
           sidebar.setAttribute('aria-hidden', true);
+
+          navToggle.classList.remove("active");
+          chapterToggle.classList.remove("active");
+          settingsToggle.classList.remove("active");
         })
 
       })(document);

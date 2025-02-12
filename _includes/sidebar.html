@@ -57,8 +57,17 @@
   </nav>
 
   <div class="sidebar-settings" id="sidebar-settings">
-    <button class="sidebar-button">Language Select</button>
-    <button class="sidebar-button">Annotations</button>
+    <button id="lang-settings" class="sidebar-button" onclick="toggleSettings('lang-settings')">Language Select <img id="lang-expand-icon" class="expand-icon" src="{{ '/assets/plus-solid.svg' | relative_url }}"><img id="lang-collapse-icon" class="collapse-icon" src="{{ '/assets/minus-solid.svg' | relative_url }}"></button>
+    <ul id="lang-menu" class="sidebar-dropdown-menu">
+      <li><button class="sidebar-button">Language 1</button></li>
+      <li><button class="sidebar-button">Language 2</button></li>
+      <li><button class="sidebar-button">Both</button></li>
+    </ul>
+    <button id="anno-settings" class="sidebar-button" onclick="toggleSettings('anno-settings')">Annotations <img id="anno-expand-icon" class="expand-icon" src="{{ '/assets/plus-solid.svg' | relative_url }}"><img id="anno-collapse-icon" class="collapse-icon" src="{{ '/assets/minus-solid.svg' | relative_url }}"></button>
+    <ul id="lang-menu" class="sidebar-dropdown-menu">
+      <li><button class="sidebar-button">Off</button></li>
+      <li><button class="sidebar-button">On</button></li>
+    </ul>
   </div>
 
   <div class="sidebar-item">
@@ -67,3 +76,11 @@
     </p>
   </div>
 </aside>
+
+<script>
+  function toggleSettings(x) {
+    let id = '#' + x;
+    let button = document.querySelector(id);
+    button.classList.toggle("expanded");
+  }
+</script>

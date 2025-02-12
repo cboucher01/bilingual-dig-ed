@@ -372,6 +372,9 @@ a.sidebar-nav-item:focus {
   cursor: pointer;
 }
 
+/* This section is commented out to reduce the complexity of 
+   overriding it for the new sidebar menus in _bilingual.scss.
+
 .sidebar-toggle:before {
   display: inline-block;
   width: 1rem;
@@ -386,9 +389,6 @@ a.sidebar-nav-item:focus {
 .sidebar-toggle:focus {
   border: solid #555 1px;
 }
-
-/* This section is commented out to reduce the complexity of 
-   overriding it for the new sidebar menus in _bilingual.scss.
 
 .sidebar-toggle:active,
 #sidebar-checkbox:focus ~ .sidebar-toggle,
