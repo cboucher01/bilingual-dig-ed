@@ -10,8 +10,8 @@ sitemap: false
 */
 
 /* Fonts */
-$main-font: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-$heading-font: sans-serif;
+$main-font: sans-serif;
+$heading-font: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 $regular-font-size: 1.25em; /* 20px / 16px = 1.25em; support text resizing in all browsers */
 
 
@@ -23,7 +23,13 @@ $regular-font-size: 1.25em; /* 20px / 16px = 1.25em; support text resizing in al
 
 $text-color: #454545;
 $heading-color: #404040;
-$link-color: #841212;
+$link-color: #5b6e95;
+
+$theme-color-1: #dee4f2;
+$theme-color-2: #bdc5d8;
+$theme-color-3: #9da7bf;
+$border-color-1: #000;
 
 @import "ed";
 @import "syntax";
+@import "bilingual";

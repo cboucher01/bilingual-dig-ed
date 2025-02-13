@@ -5,23 +5,35 @@
 
   <body class="theme-base-{{site.color-scheme}}">
 
-    <!-- This if statement decides which sidebar to use -->
-    {% if page.toc %}
-    {% include sidebar-toc.html %}
-    {% else %}
     {% include sidebar.html %}
+
+    <button class="sidebar-toggle nav-menu-toggle"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="sidebar">
+      <img src="{{ '/assets/house-solid.svg' | relative_url }}">
+    </button>
+
+    {% if page.layout == "narrative" or page.layout == "poem" or page.layout == "drama" %}
+    <button class="sidebar-toggle chapter-menu-toggle"
+      aria-label="Open chapter menu"
+      aria-expanded="false"
+      aria-controls="sidebar">
+      <img src="{{ '/assets/book-solid.svg' | relative_url }}">
+    </button>
+
+    <button class="sidebar-toggle settings-menu-toggle"
+      aria-label="Open settings menu"
+      aria-expanded="false"
+      aria-controls="sidebar">
+      <img src="{{ '/assets/gear-solid.svg' | relative_url }}">
+    </button>
     {% endif %}
 
-    <!--
+    <!--  
       Wrap is the content to shift when toggling the sidebar. We wrap the content to avoid any CSS
       collisions with our real content.
     -->
-    <div class="wrap">
-      <button class="sidebar-toggle"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="sidebar">
-      </button>
       <header class="masthead">
         <div class="container">
           <h3 class="masthead-title">
@@ -38,8 +50,8 @@
 
     <script>
 
-    // Highlight search Query
-    var url = window.location.href;
+      // Highlight search Query
+      var url = window.location.href;
       if (url.lastIndexOf("?q=") > 0) {
         // get the index of the parameter, add three (to account for length)
         var stringloc = url.lastIndexOf("?q=") + 3;
@@ -52,30 +64,138 @@
         document.getElementById("main").innerHTML = content.replace(regex, "<mark>$1</mark>");
       }
 
+      // ----------------------
       // Support sidebar toggle
+      // ----------------------
       (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
+        var navToggle = document.querySelector('.nav-menu-toggle');
+        var chapterToggle = document.querySelector('.chapter-menu-toggle');
+        var settingsToggle = document.querySelector('.settings-menu-toggle');
         var sidebar = document.querySelector('#sidebar');
         var sidebarNavLink = document.querySelector('.sidebar-nav-item');
+        var sidebarChapterLink = document.querySelector('.sidebar-chapter-item');
+        var sidebarButton = document.querySelector('.sidebar-button');
         var checkbox = document.querySelector('#sidebar-checkbox');
+        var main = document.querySelector('#main');
 
         // Toggle sidebar
-        toggle.addEventListener('click', function(e) {
+        navToggle.addEventListener('click', function(e) {
           e.preventDefault();
 
-          checkbox.checked = !checkbox.checked;
-          toggle.setAttribute('aria-expanded', checkbox.checked);
-          sidebar.setAttribute('aria-hidden', !checkbox.checked);
+          switch (checkbox.checked) {
+            case true:
+              if (sidebar.classList.contains("nav-menu")){
+                checkbox.checked = !checkbox.checked;
+                navToggle.setAttribute('aria-expanded', checkbox.checked);
+                sidebar.setAttribute('aria-hidden', !checkbox.checked);
+                break;
+              } else {
+                break;
+              }
+            case false:
+              checkbox.checked = !checkbox.checked;
+              navToggle.setAttribute('aria-expanded', checkbox.checked);
+              sidebar.setAttribute('aria-hidden', !checkbox.checked);
+              break;
+          }
+          {% if page.layout == "narrative" or page.layout == "poem" or page.layout == "drama" %}
+          sidebar.classList.remove("chapter-menu");
+          sidebar.classList.remove("settings-menu");
+          {% endif %}
+          sidebar.classList.add("nav-menu");
+
+          {% if page.layout == "narrative" or page.layout == "poem" or page.layout == "drama" %}
+          chapterToggle.classList.remove("active");
+          settingsToggle.classList.remove("active");
+          {% endif %}
+          navToggle.classList.toggle("active");
+
+          // Make sure we focus on the menu once it opens to aid tab navigation
+          sidebarNavLink.focus();
         });
 
-        // Make sure we focus on the menu once it opens to aid tab navigation
-        sidebar.addEventListener('transitionend', function() {sidebarNavLink.focus()});
+        {% if page.layout == "narrative" or page.layout == "poem" or page.layout == "drama" %}
+        chapterToggle.addEventListener('click', function(e) {
+          e.preventDefault();
 
-        // Clicking anywhere in the sidebar should close the menu
-        sidebar.addEventListener('click', function(e) {
+          switch (checkbox.checked) {
+            case true:
+              if (sidebar.classList.contains("chapter-menu")){
+                checkbox.checked = !checkbox.checked;
+                navToggle.setAttribute('aria-expanded', checkbox.checked);
+                sidebar.setAttribute('aria-hidden', !checkbox.checked);
+                break;
+              } else {
+                break;
+              }
+            case false:
+              checkbox.checked = !checkbox.checked;
+              navToggle.setAttribute('aria-expanded', checkbox.checked);
+              sidebar.setAttribute('aria-hidden', !checkbox.checked);
+              break;
+          }
+
+          sidebar.classList.remove("nav-menu");
+          sidebar.classList.remove("settings-menu");
+          sidebar.classList.add("chapter-menu");
+
+          navToggle.classList.remove("active");
+          settingsToggle.classList.remove("active");
+          chapterToggle.classList.toggle("active");
+
+          sidebarChapterLink.focus();
+        });
+
+        settingsToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          switch (checkbox.checked) {
+            case true:
+              if (sidebar.classList.contains("settings-menu")){
+                checkbox.checked = !checkbox.checked;
+                navToggle.setAttribute('aria-expanded', checkbox.checked);
+                sidebar.setAttribute('aria-hidden', !checkbox.checked);
+                break;
+              } else {
+                break;
+              }
+            case false:
+              checkbox.checked = !checkbox.checked;
+              navToggle.setAttribute('aria-expanded', checkbox.checked);
+              sidebar.setAttribute('aria-hidden', !checkbox.checked);
+              break;
+          }
+          
+          sidebar.classList.remove("nav-menu");
+          sidebar.classList.remove("chapter-menu");
+          sidebar.classList.add("settings-menu");
+
+          navToggle.classList.remove("active");
+          chapterToggle.classList.remove("active");
+          settingsToggle.classList.toggle("active");
+
+          sidebarButton.focus();
+        });
+        {% endif %}
+
+        // Toggle "hidden" class on the sidebar to aid tab navigation
+        sidebar.addEventListener('transitionend', function() {sidebar.classList.toggle("hidden")});
+
+        // Clicking anywhere outside the sidebar should close the menu
+        main.addEventListener('click', function(e) {
           checkbox.checked = false;
-          toggle.setAttribute('aria-expanded', false);
+          navToggle.setAttribute('aria-expanded', false);
+          {% if page.layout == "narrative" or page.layout == "poem" or page.layout == "drama" %}
+          chapterToggle.setAttribute('aria-expanded', false);
+          settingsToggle.setAttribute('aria-expanded', false);
+          {% endif %}
           sidebar.setAttribute('aria-hidden', true);
+
+          navToggle.classList.remove("active");
+          {% if page.layout == "narrative" or page.layout == "poem" or page.layout == "drama" %}
+          chapterToggle.classList.remove("active");
+          settingsToggle.classList.remove("active");
+          {% endif %}
         })
 
       })(document);

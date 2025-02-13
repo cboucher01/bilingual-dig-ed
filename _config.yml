@@ -1,17 +1,18 @@
-# Built with Jekyll 3.6.0
+# Built with Jekyll 4.3.4
 
 # Setup
 title:               Ed.
-tagline:             'a jekyll theme for minimal editions'
-description:         'Ed is a Jekyll theme designed for textual editors based on minimal computing principles, and focused on legibility and flexibility.'
+tagline:             'a jekyll theme for bilingual minimal editions'
+description:         ''
 url:                 'http://minicomp.github.io'
 baseurl:             '/ed'
+chapter-menu:        true # Set to true if you want the sidebar chapter menu to appear
 
 # About/contact
 author:
-  name:              Alex Gil
-  url:               https://twitter.com/elotroalex
-  email:             colibri.alex@gmail.com
+  name:              Cameron Boucher
+  url:               https://github.io/cboucher01
+  email:             
 
 # Color scheme. Options: red, orange, magenta, cyan, blue, brown
 color-scheme:
@@ -23,9 +24,11 @@ permalink: /:title/
 # Set encoding to UTF-8
 encoding: utf-8
 
-# Collections for texts
+# Collections for raw texts and rendered chapters
 collections:
   texts:
+    output: false
+  chapters:
     output: true
 
 # Markdown specs
