@@ -29,7 +29,11 @@ principles in mind.
 - Optional: Ability to generate well-formatted bibliographies and linked citations
 
 
-## Installing and using Ed
+## Installing and using doggEd
 
-To learn how to install and begin using Ed, please visit our
-[documentation page](http://minicomp.github.io/ed/documentation).
+The instructions for getting started with doggEd are the same as
+for Ed. Please visit the Ed [documentation page](http://minicomp.github.io/ed/documentation),
+for information on how to install and use the template.
+
+This repository will be updated with doggEd-specific instructions
+at a later time.
