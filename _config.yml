@@ -1,11 +1,11 @@
 # Built with Jekyll 4.3.4
 
 # Setup
-title:               Ed.
+title:               doggEd.
 tagline:             'a jekyll theme for bilingual minimal editions'
 description:         ''
 url:                 'http://minicomp.github.io'
-baseurl:             '/ed'
+baseurl:             '/dogged'
 chapter-menu:        true # Set to true if you want the sidebar chapter menu to appear
 
 # About/contact
