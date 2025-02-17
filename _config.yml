@@ -4,9 +4,15 @@
 title:               doggEd.
 tagline:             'a jekyll theme for bilingual minimal editions'
 description:         ''
-url:                 'http://minicomp.github.io'
+url:                 'https://cboucher01.github.io'
 baseurl:             '/dogged'
 chapter-menu:        true # Set to true if you want the sidebar chapter menu to appear
+
+languages: # doggEd currently supports up to two languages
+  - name: English # Full name of primary/default language (e.g. "English")
+    code: en # ISO 639 code for primary language (e.g. "en")
+  - name: Spanish # Full name of secondary language
+    code: sp # ISO 639 code for secondary language
 
 # About/contact
 author:

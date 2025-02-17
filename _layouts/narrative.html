@@ -2,30 +2,33 @@
 layout: default
 ---
 
-{% assign language-1 = page.languages | first %}
-{% assign language-2 = page.languages | last %}
+{% assign primaryLanguage = site.languages | first %}
+{% assign secondaryLanguage = site.languages | last %}
+{% assign langFullName1 = primaryLanguage.name %}
+{% assign lang1 = primaryLanguage.code %}
+{% assign langFullName2 = secondaryLanguage.name %}
+{% assign lang2 = secondaryLanguage.code %}
 
 {% assign thisChapter = site.texts | where: "chapter", page.chapter %}
-{% assign thisChapter-1 = thisChapter | where: "language", language-1 %}
-{% assign thisChapter-2 = thisChapter | where: "language", language-2 %}
+{% assign thisChapter1 = thisChapter | where: "language", lang1 %}
+{% assign thisChapter2 = thisChapter | where: "language", lang2 %}
 
-
-{% for i in thisChapter-1 %}
-  {% assign title-1 = i.title %}
-  {% assign text-1 = i.content %}
+{% for i in thisChapter1 %}
+  {% assign title1 = i.title %}
+  {% assign text1 = i.content %}
 {% endfor %}
 
-{% for i in thisChapter-2 %}
-  {% assign title-2 = i.title %}
-  {% assign text-2 = i.content %}
+{% for i in thisChapter2 %}
+  {% assign title2 = i.title %}
+  {% assign text2 = i.content %}
 {% endfor %}
 
-<article class="narrative {{ language-1 }}" lang="{{ language-1 }}">
-  <h2 class="text-title">{{ title-1 }}</h2>
-  {{ text-1 }}
+<article class="narrative {{ lang1 }}" lang="{{ lang1 }}">
+  <h2 class="text-title">{{ title1 }}</h2>
+  {{ text1 }}
 </article>
 
-<article class="narrative {{ language-2 }}" lang="{{ language-2 }}">
-  <h2 class="text-title">{{ title-2 }}</h2>
-  {{ text-2 }}
+<article class="narrative {{ lang2 }}" lang="{{ lang2 }}">
+  <h2 class="text-title">{{ title2 }}</h2>
+  {{ text2 }}
 </article>
